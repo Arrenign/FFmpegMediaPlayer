@@ -1541,7 +1541,15 @@ public class FFmpegMediaPlayer
      * 0 < x <= R -> level = 10^(72*(x-R)/20/R)
      * @param level send level scalar
      */
-    public native void setAuxEffectSendLevel(float level);
+    public native void setAuxEffectSendLevel(float level);{
+        baseSetAuxEffectSendLevel(level);
+    }
+	
+	@Override
+    int playerSetAuxEffectSendLevel(float level) {
+        _setAuxEffectSendLevel(level);
+        return AudioSystem.SUCCESS;
+    }
 
     /**
      * @param request Parcel destinated to the media player. The
